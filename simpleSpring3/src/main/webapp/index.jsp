@@ -12,7 +12,7 @@
 			<ul>
 				<li>		hi Welcome 인덱스 </li>
 				<li><a href="/base.do">태그</a></li>
-				<li><a href="/scheduleList.do">스케쥴</a></li>
+				<li><a href="/schedule/scheduleList.do">스케쥴</a></li>
 			</ul>
 		</div>
 	</div>

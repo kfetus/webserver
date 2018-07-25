@@ -1,5 +1,7 @@
 package base.comm.intercepter;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,10 +15,29 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (log.isDebugEnabled()) {
             log.debug("======================================          START         ======================================");
             log.debug(" Request URI \t:  " + request.getRequestURI());
-        }
+            log.debug("###### parameter ######");
+            Enumeration<?> en = request.getParameterNames();
+            while(en.hasMoreElements()) {
+            	String paramKey = (String) en.nextElement();            	
+            	log.debug("key : " + paramKey +";value="+request.getParameter(paramKey));
+            }
+/*
+            log.debug("###### Attribute ######");
+    		Enumeration<?> attrNames = request.getAttributeNames();
+    		while (attrNames.hasMoreElements()) {
+    			String attrName = (String) attrNames.nextElement();
+            	log.debug("key : " + attrName +";value="+request.getAttribute(attrName));
+
+    		}
+    		log.debug("###### session ######");
+    		Enumeration<?> sessNames = request.getSession().getAttributeNames();
+    		while (sessNames.hasMoreElements()) {
+    			String sessName = (String) attrNames.nextElement();
+            	log.debug("key : " + sessName +";value="+request.getSession().getAttribute(sessName));
+    		}
+*/
         return super.preHandle(request, response, handler);
     }
 
